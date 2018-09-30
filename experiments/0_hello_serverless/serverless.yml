@@ -1,0 +1,18 @@
+service: hello-serverless
+
+provider:
+  name: aws
+  runtime: python3.6
+  stage: prod
+  region: us-west-2
+  deploymentBucket:
+    name: n8mlr
+    serverSideEncryption: AES256
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
